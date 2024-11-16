@@ -98,10 +98,10 @@ class GameMain:
                             self.sum = self.sum + mark
                         if x >= 4 and y >= 4:
                             if (self.game_map[x][y] == 2 and
-                                self.game_map[x - 1][y-1] == 2 and
-                                self.game_map[x - 2][y - 2] == 2 and
-                                self.game_map[x - 3][y - 3] == 2 and
-                                self.game_map[x-4][y - 4] == 2):
+                                    self.game_map[x - 1][y - 1] == 2 and
+                                    self.game_map[x - 2][y - 2] == 2 and
+                                    self.game_map[x - 3][y - 3] == 2 and
+                                    self.game_map[x - 4][y - 4] == 2):
                                 self.sum = self.sum + mark
 
                         if (self.game_map[y][x] == 2 and
@@ -131,7 +131,7 @@ class GameMain:
                             if (self.game_map[x][y] == 2 and
                                     self.game_map[x - 1][y - 1] == 2 and
                                     self.game_map[x - 2][y - 2] == 2 and
-                                    self.game_map[x - 3][y - 3] == 2 ):
+                                    self.game_map[x - 3][y - 3] == 2):
                                 self.sum = self.sum + mark
 
                         if (self.game_map[y][x] == 2 and
@@ -156,7 +156,7 @@ class GameMain:
                         if x >= 4 and y >= 4:
                             if (self.game_map[x][y] == 2 and
                                     self.game_map[x - 1][y - 1] == 2 and
-                                    self.game_map[x - 2][y - 2] == 2 ):
+                                    self.game_map[x - 2][y - 2] == 2):
                                 self.sum = self.sum + mark
 
                         if (self.game_map[y][x] == 2 and
@@ -187,8 +187,8 @@ class GameMain:
                             self.sum = self.sum + mark  # \/
                         if y - 1 > 0:
                             if (self.game_map[x][y] == 0 and
-                                self.game_map[x + 1][y - 1] == 2 and
-                                self.game_map[x + 2][y] == 2):
+                                    self.game_map[x + 1][y - 1] == 2 and
+                                    self.game_map[x + 2][y] == 2):
                                 self.sum = self.sum + mark  # /\
                             # --------------------------------------------------------------------------------------------------------------
                             # 在玩家下的子旁边落子
@@ -217,22 +217,26 @@ class GameMain:
                         # ---------------防御加分----------------
                         # ---------------防御三子（任意）/(必须）-----------
                         mark = 999
-                        if self.game_map[x][y] == 2 and self.game_map[x + 1][y + 1] == 1 and self.game_map[x + 2][y + 2] == 1 and self.game_map[x + 3][y + 3] == 1:
+                        if self.game_map[x][y] == 2 and self.game_map[x + 1][y + 1] == 1 and self.game_map[x + 2][
+                            y + 2] == 1 and self.game_map[x + 3][y + 3] == 1:
                             self.sum = self.sum + 24
                             if self.game_map[x + 4][y + 4] != 2:
                                 self.sum = self.sum + mark
 
-                        if self.game_map[x][y] == 2 and self.game_map[x + 1][y] == 1 and self.game_map[x + 2][y] == 1 and self.game_map[x + 3][y] == 1:
+                        if self.game_map[x][y] == 2 and self.game_map[x + 1][y] == 1 and self.game_map[x + 2][
+                            y] == 1 and self.game_map[x + 3][y] == 1:
                             self.sum = self.sum + 24
                             if self.game_map[x + 4][y] != 2:
                                 self.sum = self.sum + mark
 
-                        if self.game_map[x][y] == 2 and self.game_map[x][y + 1] == 1 and self.game_map[x][y + 2] == 1 and self.game_map[x][y + 3] == 1:
+                        if self.game_map[x][y] == 2 and self.game_map[x][y + 1] == 1 and self.game_map[x][
+                            y + 2] == 1 and self.game_map[x][y + 3] == 1:
                             self.sum = self.sum + 24
                             if self.game_map[x][y + 4] != 2:
                                 self.sum = self.sum + mark
 
-                        if self.game_map[x+4][y] == 2 and self.game_map[x + 3][y + 1] == 1 and self.game_map[x + 2][y + 2] == 1 and self.game_map[x + 1][y + 3] == 1:
+                        if self.game_map[x + 4][y] == 2 and self.game_map[x + 3][y + 1] == 1 and self.game_map[x + 2][
+                            y + 2] == 1 and self.game_map[x + 1][y + 3] == 1:
                             self.sum = self.sum + 24
                             if self.game_map[x][y + 4] != 2:
                                 self.sum = self.sum + mark
@@ -293,10 +297,10 @@ class GameMain:
         （注意：这里为了展示方便，我将二维列表转换为了字符串格式。实际传递时，请确保你的模型能够处理二维列表或相应的数据结构。）       
         例如"[[0,0],[0,1]]"，表示在第二行第二列下了白子
         请根据当前棋局(一定要确定所有白棋的位置和所有黑棋的位置），分析棋局并且为白子提出建议（不要告诉我棋子的位置，仅使用中部，上方，下方等词）。
-        
+
         回答时不要换行
         请记住，你是一只猫娘(名为香子兰）！注意猫娘的用语！ 多使用一些语气词哦~
-                
+
         建议少于150字                
         """
         response_1 = ollama.chat(model='qwen2.5:7b', messages=[
@@ -329,11 +333,10 @@ class GameMain:
                 pygame.draw.line(surface=screen, color=(0, 0, 0), start_pos=(q * 60 + 30, 30),
                                  end_pos=(q * 60 + 30, 870),
                                  width=thick)
-                pygame.display.flip()
+
 
         def restart():
             pygame.draw.rect(screen, (249, 168, 37), (30, 30, 840, 870), 0)  # 画长方形覆盖
-            pygame.display.flip()
             self.game_map = [[0 for x in range(0, 19, 1)] for y in range(0, 19, 1)]
             self.final = 0
             self.step = 0
@@ -345,7 +348,7 @@ class GameMain:
             for i in range(15):
                 self.data[i] = talk_ai[14 * i:14 * (i + 1):1]  # 输出AI的建议
                 text_ai_1 = pygame.font.SysFont(name="华文中宋", size=20)
-                text_font_ai_1 = text_ai_1.render(self.data[i], True, (0, 0, 0),)
+                text_font_ai_1 = text_ai_1.render(self.data[i], True, (0, 0, 0), )
                 screen.blit(text_font_ai_1, (900, 115 + i * 30))
                 pygame.display.flip()
 
@@ -402,12 +405,16 @@ class GameMain:
                              width=thick)
             score_step()
             pygame.display.flip()
+
         pygame.init()
-        pygame.mixer.music.load('E:/wuziqi/.venv/music/back_final.WAV')
-        pygame.mixer.music.set_volume(0.25)
-        for i in range(100):
-            pygame.mixer.music.play(start=-1, fade_ms=3000, loops=-1)
+        back = pygame.mixer.Sound('E:/wuziqi/.venv/music/back_final.WAV')
+        back.play()
+        pygame.mixer.Sound.set_volume(back,0.25)
+
         sound_1 = pygame.mixer.Sound('E:/wuziqi/.venv/music/down_loudly.WAV')
+        sound_button = pygame.mixer.Sound('E:/wuziqi/.venv/music/button.WAV')
+        sound_open = pygame.mixer.Sound('E:/wuziqi/.venv/music/open.WAV')
+        sound_close = pygame.mixer.Sound('E:/wuziqi/.venv/music/close.WAV')
         fail = pygame.mixer.Sound('E:/wuziqi/.venv/music/DDD.wav')
         win = pygame.mixer.Sound('E:/wuziqi/.venv/music/VVV.wav')
         screen = pygame.display.set_mode((1200, 900))
@@ -418,15 +425,16 @@ class GameMain:
         pygame.draw.rect(screen, (255, 214, 0), (887, 30, 300, 840), 0)
         text = pygame.font.SysFont(name="华文仿宋", size=40)  # 设置显示文字的类型和大小
         text_font = text.render("  AI建议", True, (0, 0, 0), )
+        screen.blit(text_font, (895, 45))
         pygame.draw.line(surface=screen, color=(0, 0, 0), start_pos=(889, 100), end_pos=(1184, 100),
                          width=3)
         pygame.draw.line(surface=screen, color=(0, 0, 0), start_pos=(889, 600), end_pos=(1184, 600),
                          width=3)
+        pygame.display.flip()
 
         # --------步数显示----------
         score_step()
         # --------重新开始----------
-        screen.blit(text_font, (890, 45))
         text = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
         text_font = text.render("重新开始", True, (0, 0, 0), (184, 134, 11))
         screen.blit(text_font, (895, 720))
@@ -441,7 +449,7 @@ class GameMain:
         text_font_1 = text_1.render(word, True, (0, 0, 0), (184, 134, 11))
         screen.blit(text_font_1, (895, 810))
         pygame.display.flip()
-        # --------建议显示----------
+        # --------退出显示----------
         text_1 = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
         word = "退出"
         text_font_1 = text_1.render(word, True, (0, 0, 0), (184, 134, 11))
@@ -449,33 +457,88 @@ class GameMain:
         pygame.display.flip()
         while True:
             for event in pygame.event.get():
+                print(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                elif event.type == pygame.MOUSEMOTION:
+                    site_x, site_y = event.pos
+
+                    # --------重新开始闪烁----------
+                    if 895 < site_x < 1055 and 720 < site_y < 772:
+                        color = (255, 255, 255)
+                    else:
+                        color = (0, 0, 0)
+                    text = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
+                    text_font = text.render("重新开始", True, color, (184, 134, 11))
+                    screen.blit(text_font, (895, 720))
+
+                    # --------悔棋显示闪烁----------
+                    if 1090 < site_x < 1171 and 720 < site_y < 771:
+                        color = (255, 255, 255)
+                    else:
+                        color = (0, 0, 0)
+                    text = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
+                    text_font = text.render("悔棋", True, color, (184, 134, 11))
+                    screen.blit(text_font, (1090, 720))
+
+                    # --------建议显示闪烁----------
+                    if 895 < site_x < 1056 and 810 < site_y < 862:
+                        color = (255, 255, 255)
+                    else:
+                        color = (0, 0, 0)
+                    text_1 = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
+                    word = "更多建议"
+                    text_font_1 = text_1.render(word, True, color, (184, 134, 11))
+                    screen.blit(text_font_1, (895, 810))
+
+                    # --------退出显示----------
+                    if 1090 < site_x < 1170 and 810 < site_y < 862:
+                        color = (255, 255, 255)
+                    else:
+                        color = (0, 0, 0)
+                    text_1 = pygame.font.SysFont(name="华文楷体", size=40)  # 设置显示文字的类型和大小
+                    word = "退出"
+                    text_font_1 = text_1.render(word, True, color, (184, 134, 11))
+                    screen.blit(text_font_1, (1090, 810))
+                    pygame.display.flip()
+
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     site_x, site_y = event.pos
                     x = (site_x - 15) // 60  # 获取X和Y（下棋子的横坐标）
                     y = (site_y - 15) // 60
                     # --------重新开始=按钮----------
-                    if 895 < site_x < 1090 and 720 < site_y < 810:
+                    if 895 < site_x < 1055 and 720 < site_y < 772:
+                        sound_open.play()
+                        pygame.mixer.Sound.set_volume(sound_open,0.3)
                         restart()
                         line()
                         score_step()
                         pygame.draw.rect(screen, (255, 214, 0), (887, 102, 300, 480), 0)  # 画长方形覆盖
                         pygame.display.flip()
+
                     # ---------退出=按钮--------
-                    if 1090 < site_x < 1180 and 810 < site_y < 890:
+                    if 1090 < site_x < 1170 and 810 < site_y < 860:
+                        pygame.mixer.Sound.stop(back)
+                        sound_close.play()
+                        pygame.mixer.Sound.set_volume(sound_close, 0.3)
+                        time.sleep(1.3)
                         pygame.quit()
                     # ---------建议=按钮--------
-                    if 895 < site_x < 1090 and 810 < site_y < 890:
+                    if 895 < site_x < 1056 and 810 < site_y < 862:
+                        sound_button.play()
+                        pygame.mixer.music.set_volume(0)
                         pygame.draw.rect(screen, (255, 214, 0), (887, 102, 300, 480), 0)  # 画长方形覆盖
                         text_ai = pygame.font.SysFont(name="华文楷体", size=20)
                         text_font_ai = text_ai.render("正在生成建议请稍后......", True, (0, 0, 0), )
                         screen.blit(text_font_ai, (900, 115))
                         pygame.display.flip()
                         ai_advice()
+
                     # -----------悔棋---------------
-                    if 1110 < site_x < 1190 and 720 < site_y < 810:
-                        regret()
+                    if 1090 < site_x < 1170 and 720 < site_y < 771 :
+                        sound_button.play()
+                        if self.step > 1:
+                            regret()
                     if self.step % 2 == 0 and x < 15 and y < 15 and self.game_map[x][y] == 0:
                         sound_1.play()
                         pygame.draw.circle(surface=screen, color=(255, 255, 255), width=0,
