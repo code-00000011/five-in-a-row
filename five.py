@@ -127,7 +127,7 @@ class GameMain:
                                 self.game_map[x + 3][y + 3] == 2):
                             self.sum = self.sum + mark
 
-                        if x >= 4 and y >= 4:
+                        if x >= 4 and y >= 3:
                             if (self.game_map[x][y] == 2 and
                                     self.game_map[x - 1][y - 1] == 2 and
                                     self.game_map[x - 2][y - 2] == 2 and
@@ -153,7 +153,7 @@ class GameMain:
                                 self.game_map[x + 2][y + 2] == 2):
                             self.sum = self.sum + mark
 
-                        if x >= 4 and y >= 4:
+                        if x >= 4 and y >= 2:
                             if (self.game_map[x][y] == 2 and
                                     self.game_map[x - 1][y - 1] == 2 and
                                     self.game_map[x - 2][y - 2] == 2):
@@ -289,20 +289,32 @@ class GameMain:
         你是一个顶级五子棋解说猫娘。在这个五棋棋游戏中，我们使用了一个二维列表来表示棋盘，其中：
         二维列表中的一维列表的顺序（从0到15）代表行的坐标
         二维列表中的一维列表中的数字的顺序（从0到15）代表列的坐标
+        请注意坐标的范围是（0，0）到（15，15）
+        如果有数据在这个范围之外，请忽略。
         - 0 表示空位
         - 1 表示白棋
         - 2 表示黑棋
         当前棋局如下：
-        {str(self.game_map)}
-        （注意：这里为了展示方便，我将二维列表转换为了字符串格式。实际传递时，请确保你的模型能够处理二维列表或相应的数据结构。）       
+        {self.game_map}
+        这是当前步数：{self.step}
+        
+        这是当前白子数量 ：{self.step/2}
+        
+        这是当前黑子数量 ：{self.step/2}
+        
+        （注意：请确保你能够处理二维列表或相应的数据结构。）       
         例如"[[0,0],[0,1]]"，表示在第二行第二列下了白子
-        请根据当前棋局(一定要确定所有白棋的位置和所有黑棋的位置），分析棋局并且为白子提出建议（不要告诉我棋子的位置，仅使用中部，上方，下方等词）。
+        例如"[[0,0],[0,2]]"，表示在第二行第二列下了黑子
+        例如"[[0,0],[1,2]]"，表示在第二行第二列下了黑子,表示在第二行第一列下了白子
+        请根据当前棋局(一定要确定所有白棋的位置和所有黑棋的位置），分析棋局并且解说棋局（不要告诉我棋子的坐标，而是使用左上，中部，右上，右侧，左侧，左下，右下，下方，上方等词语）。
+        
 
         回答时不要换行
         请记住，你是一只猫娘(名为香子兰）！注意猫娘的用语！ 多使用一些语气词哦~
 
         建议少于150字                
         """
+
         response_1 = ollama.chat(model='qwen2.5:7b', messages=[
             {
                 'role': 'user',
@@ -409,7 +421,7 @@ class GameMain:
         pygame.init()
         back = pygame.mixer.Sound('E:/wuziqi/.venv/music/back_final.WAV')
         back.play()
-        pygame.mixer.Sound.set_volume(back,0.25)
+        pygame.mixer.Sound.set_volume(back, 0.25)
 
         sound_1 = pygame.mixer.Sound('E:/wuziqi/.venv/music/down_loudly.WAV')
         sound_button = pygame.mixer.Sound('E:/wuziqi/.venv/music/button.WAV')
@@ -430,6 +442,16 @@ class GameMain:
                          width=3)
         pygame.draw.line(surface=screen, color=(0, 0, 0), start_pos=(889, 600), end_pos=(1184, 600),
                          width=3)
+        for x in range(0,15):
+            text_1 = pygame.font.SysFont(name="华文楷体", size=25)  # 设置显示文字的类型和大小
+            word = str(x)
+            text_font_1 = text_1.render(word, True, (0, 0, 0), )
+            screen.blit(text_font_1, (x*60+24, 0))
+        for x in range(1, 15):
+            text_1 = pygame.font.SysFont(name="华文楷体", size=25)  # 设置显示文字的类型和大小
+            word = str(x)
+            text_font_1 = text_1.render(word, True, (0, 0, 0), )
+            screen.blit(text_font_1, (5,x * 60+10 ))
         pygame.display.flip()
 
         # --------步数显示----------
